@@ -17,7 +17,6 @@ export class PdfController {
   @Patch()
   @UseInterceptors(FileInterceptor('file'))
   async create(@UploadedFile() file) {
-    const blob = new Blob([file.buffer as Blob], { type: 'application/pdf' })
     const pdf = await this.pdfsService.createPdf(file.buffer)
     return pdf
   }
